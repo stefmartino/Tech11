@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting Form</title>
+</head>
+<body>
+
+<form id="greetingForm">
+    <label>Form of Address:
+        <select id="formOfAddress" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Mr.">Mr.</option>
+            <option value="Mrs.">Mrs.</option>
+        </select>
+    </label>
+    <br><br>
+
+    <label>First Name:
+        <input type="text" id="firstName" maxlength="30" required>
+    </label>
+    <br><br>
+
+    <label>Last Name:
+        <input type="text" id="lastName" maxlength="30" required>
+    </label>
+    <br><br>
+
+    <button type="button" onclick="displayGreeting()">Send</button>
+</form>
+
+<div id="greetingSection"></div>
+
+<script>
+    function displayGreeting() {
+        const formOfAddress = document.getElementById('formOfAddress').value;
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+
+        if (formOfAddress === '') {
+            alert('Please select a form of address.');
+            return;
+        }
+
+        if (firstName === '') {
+            alert('Please enter your first name.');
+            return;
+        }
+
+        if (lastName === '') {
+            alert('Please enter your last name.');
+            return;
+        }
+
+        let greeting = '';
+        if (formOfAddress === 'Mr.') {
+            greeting = 'Dear Mr. ' + lastName;
+        } else if (formOfAddress === 'Mrs.') {
+            greeting = 'Dear Madam ' + lastName;
+        }
+
+        document.getElementById('greetingSection').innerHTML = '<hr>' + '<p>' + greeting + '</p>';
+    }
+</script>
+
+</body>
+</html>
